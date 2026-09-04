@@ -46,6 +46,14 @@ This repository contains a collection of HTML, CSS, and JavaScript games. 🎯�
 | 40  | [Bubble Shooter Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/40-Bubble-Shooter-Game)               | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/40-Bubble-Shooter-Game/)         |
 | 41  | [Checkers Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/41-Checkers-Game)                           | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/41-Checkers-Game/)                |
 | 42  | [Space Invaders Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/42-Space-Invaders-Game)               | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/42-Space-Invaders-Game/)         |
+| 43  | [Asteroids Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/43-Asteroids-Game)                         | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/43-Asteroids-Game/)               |
+| 44  | [Reversi Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/44-Reversi-Game)                             | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/44-Reversi-Game/)                 |
+| 45  | [Mahjong Solitaire Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/45-Mahjong-Solitaire-Game)         | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/45-Mahjong-Solitaire-Game/)       |
+| 46  | [Frogger Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/46-Frogger-Game)                             | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/46-Frogger-Game/)                 |
+| 47  | [Poker Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/47-Poker-Game)                                 | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/47-Poker-Game/)                   |
+| 48  | [Battleship Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/48-Battleship-Game)                       | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/48-Battleship-Game/)             |
+| 49  | [Nonogram Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/49-Nonogram-Game)                           | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/49-Nonogram-Game/)               |
+| 50  | [Lights Out Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/50-Lights-Out-Game)                       | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/50-Lights-Out-Game/)             |
 
 ## Games Description
 
@@ -91,6 +99,14 @@ This repository contains a collection of HTML, CSS, and JavaScript games. 🎯�
 40. **Bubble Shooter Game**: Aim and shoot bubbles to pop groups of 3+ same color. Floating clusters fall. Clear the board to win. Easy / Medium / Hard change colors, rows, and shot speed. 🔵
 41. **Checkers Game**: American draughts vs AI on an 8×8 board with captures, multi-jumps, and kings. Easy / Medium / Hard AI strength. ♟️
 42. **Space Invaders Game**: Shoot alien waves, use destructible bunkers, and survive. Easy / Medium / Hard change grid size, speed, and lives. Touch controls included. 👾
+43. **Asteroids Game**: Rotate, thrust, and shoot asteroids into smaller rocks. Clear waves to win. Easy / Medium / Hard change lives, rock count, UFO, and hyperspace. 🚀
+44. **Reversi Game**: Othello vs AI on an 8×8 board. Flip opponent discs; most discs win. Easy / Medium / Hard AI with hints and undo on easier levels. ⚫⚪
+45. **Mahjong Solitaire Game**: Match free tile pairs to clear the layout. Easy half-board with hints; Medium / Hard full turtle with timers and limited helps. 🀄
+46. **Frogger Game**: Hop across road and river into homes. Classic fixed screen with cars, logs, and turtles. Easy / Medium / Hard change lives, homes, and speed. 🐸
+47. **Poker Game**: Five-card draw vs AI. Ante, discard up to 3, draw once, showdown. Easy / Medium / Hard bankrolls; Easy includes discard hints. 🃏
+48. **Battleship Game**: Place your fleet on a 10×10 grid and trade shots with the AI. Sink all five ships to win. Easy random fire; Medium/Hard hunt after hits. 🚢
+49. **Nonogram Game**: Paint cells to match row and column clues. Easy 5×5 with hints; Medium 10×10; Hard 15×15. Mark empties with right-click or long-press. 🧩
+50. **Lights Out Game**: Toggle a light and its neighbors to turn the whole board off. Easy 3×3, Medium 5×5, Hard 7×7 — always solvable. 💡
 
 ## License
 
