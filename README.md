@@ -41,6 +41,11 @@ This repository contains a collection of HTML, CSS, and JavaScript games. 🎯�
 | 35  | [Whack A Mole Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/35-Whack-A-Mole-Game)                   | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/35-Whack-A-Mole-Game/)          |
 | 36  | [Simon Says Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/36-Simon-Says-Game)                       | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/36-Simon-Says-Game/)            |
 | 37  | [Sliding Puzzle Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/37-Sliding-Puzzle-Game)               | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/37-Sliding-Puzzle-Game/)        |
+| 38  | [Mastermind Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/38-Mastermind-Game)                       | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/38-Mastermind-Game/)            |
+| 39  | [Blackjack Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/39-Blackjack-Game)                         | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/39-Blackjack-Game/)              |
+| 40  | [Bubble Shooter Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/40-Bubble-Shooter-Game)               | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/40-Bubble-Shooter-Game/)         |
+| 41  | [Checkers Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/41-Checkers-Game)                           | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/41-Checkers-Game/)                |
+| 42  | [Space Invaders Game](https://github.com/he-is-talha/html-css-javascript-games/tree/main/42-Space-Invaders-Game)               | [Live Demo](https://he-is-talha.github.io/html-css-javascript-games/42-Space-Invaders-Game/)         |
 
 ## Games Description
 
@@ -81,6 +86,11 @@ This repository contains a collection of HTML, CSS, and JavaScript games. 🎯�
 35. **Whack-a-Mole Game**: Test your reaction speed by hitting randomly appearing moles with a mallet before they disappear in this classic arcade game. 🕹️
 36. **Simon Says Game**: Follow the color sequence and repeat it correctly to advance through levels. Test your memory and speed in this classic memory game! 🎮💡
 37. **Sliding Puzzle Game**: Slide tiles into the empty space to reassemble the image. Three difficulties: Easy (3×3), Medium (4×4), Hard (5×5). Mobile-friendly. 🧩
+38. **Mastermind Game**: Guess the secret color code. Black pegs mean correct color and position; white pegs mean correct color in the wrong spot. Easy / Medium / Hard change peg count, colors, and guesses. 🎯
+39. **Blackjack Game**: Beat the dealer without going over 21. Hit, Stand, Double; blackjack pays 3:2. Three bankroll levels; Easy includes strategy hints. 🃏
+40. **Bubble Shooter Game**: Aim and shoot bubbles to pop groups of 3+ same color. Floating clusters fall. Clear the board to win. Easy / Medium / Hard change colors, rows, and shot speed. 🔵
+41. **Checkers Game**: American draughts vs AI on an 8×8 board with captures, multi-jumps, and kings. Easy / Medium / Hard AI strength. ♟️
+42. **Space Invaders Game**: Shoot alien waves, use destructible bunkers, and survive. Easy / Medium / Hard change grid size, speed, and lives. Touch controls included. 👾
 
 ## License
 
