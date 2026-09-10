@@ -505,8 +505,44 @@ restartBtn.addEventListener("click", () => {
   restartGame();
 });
 
+// Mobile D-Pad and Touch Swipe Controls
+document.querySelectorAll(".dpad-btn").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    startBackgroundSound();
+    const dir = btn.dataset.dir;
+    if (dir === "up") trySetDirection(0, -1);
+    else if (dir === "down") trySetDirection(0, 1);
+    else if (dir === "left") trySetDirection(-1, 0);
+    else if (dir === "right") trySetDirection(1, 0);
+  });
+});
+
+let touchStartX = 0, touchStartY = 0;
+canvas.addEventListener("touchstart", (e) => {
+  startBackgroundSound();
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+canvas.addEventListener("touchmove", (e) => {
+  if (!touchStartX || !touchStartY) return;
+  const dx = e.touches[0].clientX - touchStartX;
+  const dy = e.touches[0].clientY - touchStartY;
+  if (Math.abs(dx) > 25 || Math.abs(dy) > 25) {
+    if (Math.abs(dx) > Math.abs(dy)) {
+      trySetDirection(dx > 0 ? 1 : -1, 0);
+    } else {
+      trySetDirection(0, dy > 0 ? 1 : -1);
+    }
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }
+}, { passive: true });
+
 initMap();
 resetEntities();
 updateUI();
 requestAnimationFrame(loop);
+
 

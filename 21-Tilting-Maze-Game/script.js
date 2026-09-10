@@ -236,10 +236,11 @@ const holes = [
   y: hole.row * (wallW + pathW) + (wallW / 2 + pathW / 2),
 }));
 
-joystickHeadElement.addEventListener("mousedown", function (event) {
+function handleJoyStart(event) {
+  const t = (event.touches && event.touches[0]) || event;
   if (!gameInProgress) {
-    mouseStartX = event.clientX;
-    mouseStartY = event.clientY;
+    mouseStartX = t.clientX;
+    mouseStartY = t.clientY;
     gameInProgress = true;
     window.requestAnimationFrame(main);
     noteElement.style.opacity = 0;
@@ -248,12 +249,13 @@ joystickHeadElement.addEventListener("mousedown", function (event) {
           cursor: grabbing;
         `;
   }
-});
+}
 
-window.addEventListener("mousemove", function (event) {
+function handleJoyMove(event) {
   if (gameInProgress) {
-    const mouseDeltaX = -Math.minmax(mouseStartX - event.clientX, 15);
-    const mouseDeltaY = -Math.minmax(mouseStartY - event.clientY, 15);
+    const t = (event.touches && event.touches[0]) || event;
+    const mouseDeltaX = -Math.minmax(mouseStartX - t.clientX, 15);
+    const mouseDeltaY = -Math.minmax(mouseStartY - t.clientY, 15);
 
     joystickHeadElement.style.cssText = `
           left: ${mouseDeltaX}px;
@@ -277,7 +279,19 @@ window.addEventListener("mousemove", function (event) {
     frictionX = gravity * Math.cos((rotationY / 180) * Math.PI) * friction;
     frictionY = gravity * Math.cos((rotationX / 180) * Math.PI) * friction;
   }
-});
+}
+
+joystickHeadElement.addEventListener("mousedown", handleJoyStart);
+joystickHeadElement.addEventListener("touchstart", function (event) {
+  if (event.cancelable) event.preventDefault();
+  handleJoyStart(event);
+}, { passive: false });
+
+window.addEventListener("mousemove", handleJoyMove);
+window.addEventListener("touchmove", function (event) {
+  if (gameInProgress && event.cancelable) event.preventDefault();
+  handleJoyMove(event);
+}, { passive: false });
 
 window.addEventListener("keydown", function (event) {
   // If not an arrow key or space or H was pressed then return

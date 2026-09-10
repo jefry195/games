@@ -31,6 +31,7 @@ aim({
 
 // set up start drag event
 window.addEventListener("mousedown", draw);
+window.addEventListener("touchstart", draw, { passive: false });
 
 function draw(e) {
 	// pull back arrow
@@ -40,12 +41,15 @@ function draw(e) {
 	});
 	window.addEventListener("mousemove", aim);
 	window.addEventListener("mouseup", loose);
+	window.addEventListener("touchmove", aim, { passive: false });
+	window.addEventListener("touchend", loose);
 	aim(e);
 }
 
 
 
 function aim(e) {
+	if (e && e.cancelable) e.preventDefault();
 	// get mouse position in relation to svg position and scale
 	var point = getMouseSVG(e);
 	point.x = Math.min(point.x, pivot.x - 7);
@@ -96,6 +100,8 @@ function loose() {
 	// release arrow
 	window.removeEventListener("mousemove", aim);
 	window.removeEventListener("mouseup", loose);
+	window.removeEventListener("touchmove", aim);
+	window.removeEventListener("touchend", loose);
 
 	TweenMax.to("#bow", 0.4, {
 		scaleX: 1,
@@ -195,8 +201,9 @@ function showMessage(selector) {
 
 function getMouseSVG(e) {
 	// normalize mouse position within svg coordinates
-	cursor.x = e.clientX;
-	cursor.y = e.clientY;
+	var t = (e.touches && e.touches[0]) || (e.changedTouches && e.changedTouches[0]);
+	cursor.x = t ? t.clientX : (e.clientX !== undefined ? e.clientX : 0);
+	cursor.y = t ? t.clientY : (e.clientY !== undefined ? e.clientY : 0);
 	return cursor.matrixTransform(svg.getScreenCTM().inverse());
 }
 

@@ -6,30 +6,39 @@ body {
 }
 
 .container {
-  width: 70%;
+  width: 92%;
+  max-width: 650px;
+  box-sizing: border-box;
   padding: 10px;
 }
 
 .main {
   text-align: center;
   padding: 10px;
-  font-size: 2em;
+  font-size: clamp(1.2em, 4vw, 2em);
   border: 3px solid white;
 }
 
 .typingArea {
   width: 100%;
-  height: 350px;
+  box-sizing: border-box;
+  height: 250px;
   margin-top: 20px;
+  font-size: 16px;
+  padding: 12px;
 }
 
 .btn {
-  width: 20%;
+  min-width: 140px;
+  width: auto;
+  max-width: 80%;
   outline: none;
   border: none;
-  font-size: 2em;
-  padding: 10px;
+  font-size: 1.2em;
+  padding: 12px 24px;
+  border-radius: 8px;
   color: white;
   background-color: blueviolet;
   margin-top: 20px;
+  cursor: pointer;
 }

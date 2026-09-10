@@ -48,6 +48,27 @@ const changeDirection = e => {
 // Calling changeDirection on each key click and passing key dataset value as an object
 controls.forEach(button => button.addEventListener("click", () => changeDirection({ key: button.dataset.key })));
 
+// Touch swipe support for mobile
+let snakeTouchStartX = 0, snakeTouchStartY = 0;
+document.addEventListener("touchstart", (e) => {
+    snakeTouchStartX = e.touches[0].clientX;
+    snakeTouchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+document.addEventListener("touchend", (e) => {
+    if (!snakeTouchStartX || !snakeTouchStartY) return;
+    const dx = e.changedTouches[0].clientX - snakeTouchStartX;
+    const dy = e.changedTouches[0].clientY - snakeTouchStartY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 20) {
+        changeDirection({ key: dx > 0 ? "ArrowRight" : "ArrowLeft" });
+    } else if (Math.abs(dy) > 20) {
+        changeDirection({ key: dy > 0 ? "ArrowDown" : "ArrowUp" });
+    }
+    snakeTouchStartX = 0;
+    snakeTouchStartY = 0;
+}, { passive: true });
+
+
 const initGame = () => {
     if(gameOver) return handleGameOver();
     let html = `<div class="food" style="grid-area: ${foodY} / ${foodX}"></div>`;

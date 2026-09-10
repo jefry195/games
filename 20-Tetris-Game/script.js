@@ -231,19 +231,47 @@
     },
     bindKeyEvents: function () {
       var me = this;
-      var event = "keypress";
-      if (this.isSafari() || this.isIE()) {
-        event = "keydown";
-      }
       var cb = function (e) {
         me.handleKey(e);
       };
-      if (window.addEventListener) {
-        document.addEventListener(event, cb, false);
-      } else {
-        document.attachEvent("on" + event, cb);
+      document.addEventListener("keydown", cb, false);
+
+      // Bind Mobile Controls
+      var bLeft = document.getElementById("t-left");
+      var bRight = document.getElementById("t-right");
+      var bRotate = document.getElementById("t-rotate");
+      var bDown = document.getElementById("t-down");
+      var bPause = document.getElementById("t-pause");
+      if (bLeft) bLeft.addEventListener("click", function () { me.move("L"); });
+      if (bRight) bRight.addEventListener("click", function () { me.move("R"); });
+      if (bRotate) bRotate.addEventListener("click", function () { me.move("RT"); });
+      if (bDown) bDown.addEventListener("click", function () { me.move("D"); });
+      if (bPause) bPause.addEventListener("click", function () { me.togglePause(); });
+
+      // Touch swipe on canvas
+      var touchStartX = 0, touchStartY = 0;
+      if (this.canvas) {
+        this.canvas.addEventListener("touchstart", function (e) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        this.canvas.addEventListener("touchend", function (e) {
+          if (!touchStartX || !touchStartY) return;
+          var dx = e.changedTouches[0].clientX - touchStartX;
+          var dy = e.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 25) {
+            if (dx > 0) me.move("R");
+            else me.move("L");
+          } else if (Math.abs(dy) > 25) {
+            if (dy > 0) me.move("D");
+            else me.move("RT");
+          }
+          touchStartX = 0;
+          touchStartY = 0;
+        }, { passive: true });
       }
     },
+
     handleKey: function (e) {
       var c = this.whichKey(e);
       var dir = "";

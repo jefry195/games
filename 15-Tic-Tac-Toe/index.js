@@ -29,7 +29,7 @@ init();
 function init(){
   boxEls.forEach(box=>box.addEventListener('click',boxClick));
   restartBtnEl.addEventListener('click',restartGame);
-  statusEl.textContent=`Now "${player}" Turn`;
+  statusEl.textContent=`Giliran "${player}"`;
   running=true;
 }
 
@@ -57,7 +57,7 @@ function updateBox(box,index){
 function changePlayer(){
     player=(player=='X') ? "O" :"X";
     currentPlayer=(currentPlayer==x) ? o :x;
-    statusEl.textContent=`Now "${player}" Turn`;
+    statusEl.textContent=`Giliran "${player}"`;
     statusEl.style.color = "black"
 }
 
@@ -67,9 +67,9 @@ function restartGame(){
     currentPlayer=x;
     player="X";
     running=true;
-    statusEl.textContent=`Now "${player}" Turn`;
+    statusEl.textContent=`Giliran "${player}"`;
     statusEl.style.color = "black"
-    restartBtnEl.textContent = "Restart 🔁"
+    restartBtnEl.textContent = "Ulangi 🔁"
   
     boxEls.forEach(box=>{
         box.innerHTML="";
@@ -100,15 +100,15 @@ function checkWinner(){
 
     // if win then this will execute. 
   if(isWon){
-    statusEl.textContent=`Hurrah...! "${player}" Won the game🕺`;
+    statusEl.textContent=`Hore...! "${player}" Menang! 🕺`;
     statusEl.style.color = "green"
-    restartBtnEl.textContent = "Play Again 😉"
+    restartBtnEl.textContent = "Main Lagi 😉"
     running=false;
     // if the game is draw then this executes.
   }else if(!options.includes("")){
-    statusEl.textContent=`Oops..! Game Draw..!`;
+    statusEl.textContent=`Seri..! Permainan Berakhir!`;
     statusEl.style.color = "red"
-    restartBtnEl.textContent = "Play Again 😉"
+    restartBtnEl.textContent = "Main Lagi 😉"
     running=false;
     // else the player will change to continue the game.
   }else{

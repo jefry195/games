@@ -83,6 +83,26 @@ function keyUpHandler(e) {
   }
 }
 
+// Touch controls for mobile / tablet
+function handlePongTouch(e) {
+  const rect = canvas.getBoundingClientRect();
+  const touches = e.touches ? e.touches : [e];
+  const scaleY = canvas.height / rect.height;
+  for (let i = 0; i < touches.length; i++) {
+    const t = touches[i];
+    const relX = t.clientX - rect.left;
+    const relY = (t.clientY - rect.top) * scaleY;
+    if (relX < rect.width / 2) {
+      leftPaddleY = Math.max(0, Math.min(canvas.height - paddleHeight, relY - paddleHeight / 2));
+    } else {
+      rightPaddleY = Math.max(0, Math.min(canvas.height - paddleHeight, relY - paddleHeight / 2));
+    }
+  }
+}
+canvas.addEventListener("touchstart", handlePongTouch, { passive: true });
+canvas.addEventListener("touchmove", handlePongTouch, { passive: true });
+
+
 // Update game state
 function update() {
   // Move paddles

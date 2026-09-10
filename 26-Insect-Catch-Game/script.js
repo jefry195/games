@@ -14,7 +14,7 @@ startButton.addEventListener("click", () => screens[0].classList.add("up"));
 const increaseScore = () => {
   score++;
   if (score > 19) message.classList.add("visible");
-  scoreElement.innerHTML = `Score: ${score}`;
+  scoreElement.innerHTML = `Skor: ${score}`;
 };
 
 const addInsects = () => {
@@ -22,18 +22,21 @@ const addInsects = () => {
   setTimeout(createInsect, 1500);
 };
 
-const catchInsect = function () {
+const catchInsect = function (e) {
+  if (e && e.cancelable) e.preventDefault();
   increaseScore();
   this.classList.add("caught");
-  setTimeout(() => this.remove, 2000);
+  setTimeout(() => {
+    if (this && this.remove) this.remove();
+  }, 2000);
   addInsects();
 };
 
 const getRandomLocation = () => {
   const width = window.innerWidth;
   const height = window.innerHeight;
-  const x = Math.random() * (width - 200) + 100;
-  const y = Math.random() * (height - 200) + 100;
+  const x = Math.random() * Math.max(80, width - 120) + 20;
+  const y = Math.random() * Math.max(80, height - 160) + 60;
   return { x, y };
 };
 
@@ -47,6 +50,7 @@ const createInsect = () => {
   alt="${selectedInsect.alt}" 
   style="transform: rotate(${Math.random() * 360}deg)" />`;
   insect.addEventListener("click", catchInsect);
+  insect.addEventListener("pointerdown", catchInsect);
   gameContainer.appendChild(insect);
 };
 
@@ -55,7 +59,7 @@ const increaseTime = () => {
   let s = seconds % 60;
   m = m < 10 ? `0${m}` : m;
   s = s < 10 ? `0${s}` : s;
-  timeElement.innerHTML = `Time: ${m}:${s}`;
+  timeElement.innerHTML = `Waktu: ${m}:${s}`;
   seconds++;
 };
 

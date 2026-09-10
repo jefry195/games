@@ -29,13 +29,16 @@ body {
 }
 
 .choices {
-  gap: 20px;
-  width: 400px;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .choices img {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
+  max-width: 26vw;
+  max-height: 26vw;
   cursor: pointer;
   border-radius: 50%;
 }

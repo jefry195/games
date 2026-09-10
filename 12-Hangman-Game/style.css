@@ -145,3 +145,73 @@ h3 {
 .notification-container p {
   margin: 0;
 }
+
+/* Virtual Keyboard for Touch/Mobile */
+.keyboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 460px;
+  width: 100%;
+  gap: 6px;
+  justify-content: center;
+  margin: 15px auto 20px;
+  padding: 0 10px;
+  z-index: 10;
+}
+
+.key-btn {
+  width: 32px;
+  height: 38px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--light-color);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  transition: background 0.15s, transform 0.1s;
+  touch-action: manipulation;
+}
+
+.key-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.key-btn:active {
+  transform: scale(0.92);
+}
+
+.key-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@media (max-width: 500px) {
+  body {
+    height: auto !important;
+    min-height: 100vh;
+    overflow-y: auto !important;
+  }
+  .game-container {
+    width: 100% !important;
+    max-width: 360px !important;
+    height: auto !important;
+    padding: 10px !important;
+  }
+  .key-btn {
+    width: 28px;
+    height: 34px;
+    font-size: 14px;
+    gap: 4px;
+  }
+  h1 {
+    font-size: 1.6rem;
+  }
+}
+

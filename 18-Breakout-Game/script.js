@@ -200,5 +200,21 @@ document.addEventListener("keyup", keyUp);
 rulesButton.addEventListener("click", () => rules.classList.add("show"));
 closeButton.addEventListener("click", () => rules.classList.remove("show"));
 
+// Touch / Mouse dragging for Breakout paddle on mobile & desktop
+function handlePaddlePointer(e) {
+  const rect = canvas.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const scale = canvas.width / rect.width;
+  const relativeX = (clientX - rect.left) * scale;
+  paddle.x = Math.max(0, Math.min(canvas.width - paddle.w, relativeX - paddle.w / 2));
+}
+
+canvas.addEventListener("touchstart", handlePaddlePointer, { passive: true });
+canvas.addEventListener("touchmove", handlePaddlePointer, { passive: true });
+canvas.addEventListener("mousemove", (e) => {
+  if (e.buttons > 0) handlePaddlePointer(e);
+});
+
 // Init
 update();
+

@@ -85,15 +85,15 @@
     <a href="../" id="arcade-back-btn" onclick="if(window.history.length>1&&document.referrer.includes(window.location.host)){window.history.back();return false;}" style="position:fixed;top:12px;left:12px;z-index:999999;background:rgba(15,23,42,0.85);color:#38bdf8;text-decoration:none;padding:7px 14px;border-radius:9999px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:13px;font-weight:600;border:1px solid rgba(56,189,248,0.4);box-shadow:0 4px 12px rgba(0,0,0,0.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none;transition:transform 0.15s,background 0.15s;" onmouseover="this.style.transform='scale(1.05)';this.style.background='#1e293b'" onmouseout="this.style.transform='scale(1)';this.style.background='rgba(15,23,42,0.85)'"><span>⬅</span> Kembali ke Menu</a>
 
     <div class="screen">
-      <h1>Catch The Insect</h1>
-      <button class="btn" id="start-btn">Play Game</button>
+      <h1>Tangkap Serangga</h1>
+      <button class="btn" id="start-btn">Mulai Main</button>
     </div>
     <div class="screen">
-      <h1>What is your "favorite" insect?</h1>
+      <h1>Pilih serangga favoritmu</h1>
       <ul class="insects-list">
         <li>
           <button class="choose-insect-btn">
-            <p>Fly</p>
+            <p>Lalat</p>
             <img
               src="http://pngimg.com/uploads/fly/fly_PNG3946.png"
               alt="fly"
@@ -102,7 +102,7 @@
         </li>
         <li>
           <button class="choose-insect-btn">
-            <p>Mosquito</p>
+            <p>Nyamuk</p>
             <img
               src="http://pngimg.com/uploads/mosquito/mosquito_PNG18175.png"
               alt="mosquito"
@@ -111,7 +111,7 @@
         </li>
         <li>
           <button class="choose-insect-btn">
-            <p>Spider</p>
+            <p>Laba-laba</p>
             <img
               src="http://pngimg.com/uploads/spider/spider_PNG12.png"
               alt="spider"
@@ -120,7 +120,7 @@
         </li>
         <li>
           <button class="choose-insect-btn">
-            <p>Roach</p>
+            <p>Kecoak</p>
             <img
               src="http://pngimg.com/uploads/roach/roach_PNG12163.png"
               alt="roach"
@@ -130,11 +130,11 @@
       </ul>
     </div>
     <div class="screen game-container" id="game-container">
-      <h3 id="time" class="time">Time: 00:00</h3>
-      <h3 id="score" class="score">Score: 0</h3>
+      <h3 id="time" class="time">Waktu: 00:00</h3>
+      <h3 id="score" class="score">Skor: 0</h3>
       <h5 id="message" class="message">
-        Are you annnoyed yet? <br />
-        You are playing an impossible game!!
+        Apakah kamu mulai kesal? <br />
+        Kamu memainkan game yang seru dan menantang!
       </h5>
     </div>
     <script src="script.js"></script>

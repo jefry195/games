@@ -119,3 +119,28 @@ h1 {
 .grid, .scoreBoard {
   display: none;
 }
+
+@media (max-width: 900px) {
+  body {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding-top: 50px !important;
+    overflow-y: auto !important;
+    min-height: 100vh;
+  }
+  .grid {
+    margin: 15px auto !important;
+    width: min(92vw, 380px) !important;
+    height: min(92vw, 380px) !important;
+  }
+  .grid div {
+    width: 12.5% !important;
+    height: 12.5% !important;
+  }
+  .scoreBoard {
+    margin: 10px auto !important;
+    width: auto !important;
+    height: auto !important;
+  }
+}

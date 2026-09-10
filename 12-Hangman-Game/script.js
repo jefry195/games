@@ -88,28 +88,46 @@ function showNotification() {
   }, 2000);
 }
 
-window.addEventListener("keypress", (e) => {
-  if (playable) {
-    const letter = e.key.toLowerCase();
-    if (letter >= "a" && letter <= "z") {
-      if (selectedWord.includes(letter)) {
-        if (!correctLetters.includes(letter)) {
-          correctLetters.push(letter);
-          displayWord();
-        } else {
-          showNotification();
-        }
+function handleLetter(letter) {
+  letter = letter.toLowerCase();
+  if (playable && letter >= "a" && letter <= "z") {
+    if (selectedWord.includes(letter)) {
+      if (!correctLetters.includes(letter)) {
+        correctLetters.push(letter);
+        displayWord();
       } else {
-        if (!wrongLetters.includes(letter)) {
-          wrongLetters.push(letter);
-          updateWrongLettersElement();
-        } else {
-          showNotification();
-        }
+        showNotification();
+      }
+    } else {
+      if (!wrongLetters.includes(letter)) {
+        wrongLetters.push(letter);
+        updateWrongLettersElement();
+      } else {
+        showNotification();
       }
     }
+    const btn = document.querySelector(`.key-btn[data-key="${letter}"]`);
+    if (btn) btn.disabled = true;
   }
+}
+
+window.addEventListener("keydown", (e) => {
+  handleLetter(e.key);
 });
+
+const keyboardContainer = document.getElementById("keyboard-container");
+function renderKeyboard() {
+  if (!keyboardContainer) return;
+  keyboardContainer.innerHTML = "";
+  "abcdefghijklmnopqrstuvwxyz".split("").forEach((char) => {
+    const btn = document.createElement("button");
+    btn.className = "key-btn";
+    btn.dataset.key = char;
+    btn.textContent = char;
+    btn.addEventListener("click", () => handleLetter(char));
+    keyboardContainer.appendChild(btn);
+  });
+}
 
 playAgainButton.addEventListener("click", () => {
   playable = true;
@@ -118,8 +136,11 @@ playAgainButton.addEventListener("click", () => {
   selectedWord = words[Math.floor(Math.random() * words.length)];
   displayWord();
   updateWrongLettersElement();
+  renderKeyboard();
   popup.style.display = "none";
 });
 
 // Init
 displayWord();
+renderKeyboard();
+

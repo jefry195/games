@@ -41,16 +41,21 @@ function startGame() {
   peep();
   setTimeout(() => {
     timeUp = true;
-    button.innerHTML = "Try again?";
+    button.innerHTML = "Coba lagi?";
     button.style.visibility = "visible";
   }, 10000);
 }
 
 function bonk(e) {
-  if (!e.isTrusted) return;
+  if (e && e.cancelable) e.preventDefault();
   score++;
-  this.classList.remove("up");
+  if (this.parentElement) {
+    this.parentElement.classList.remove("up");
+  }
   scoreBoard.textContent = score;
 }
 
-moles.forEach((mole) => mole.addEventListener("click", bonk));
+moles.forEach((mole) => {
+  mole.addEventListener("click", bonk);
+  mole.addEventListener("pointerdown", bonk);
+});

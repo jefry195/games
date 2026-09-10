@@ -36,21 +36,26 @@ body {
 
 .grid {
   width: 90%;
-  height: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  max-width: 480px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
   background-color: rgb(36, 36, 36);
-  margin-top: 2rem;
-  padding: 20px;
+  margin-top: 1.5rem;
+  padding: 15px;
+  border-radius: 12px;
+  box-sizing: border-box;
 }
 
 .square {
-  height: 200px;
-  width: 200px;
-  margin: 10px;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: auto;
+  margin: 0;
   background: rgb(61, 61, 61);
+  border-radius: 8px;
+  cursor: pointer;
+  touch-action: manipulation;
 }
 
 /* JavaScript */

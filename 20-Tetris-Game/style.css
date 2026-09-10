@@ -87,3 +87,70 @@ body {
   height: 420px;
   padding: 10px;
 }
+
+/* Mobile Controls */
+.tetris-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 16px auto;
+  max-width: 360px;
+  width: 100%;
+}
+
+.t-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: #202020;
+  color: #e1ff5f;
+  border: 2px solid #e1ff5f;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  user-select: none;
+  transition: transform 0.1s, background 0.1s;
+}
+
+.t-btn:active {
+  transform: scale(0.92);
+  background: #e1ff5f;
+  color: #202020;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px 4px !important;
+    overflow-y: auto !important;
+  }
+  #tetris {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 100% !important;
+    max-width: 320px !important;
+    padding: 8px !important;
+    margin: 0 auto !important;
+  }
+  #info {
+    float: none;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 6px;
+    margin-bottom: 8px;
+    padding: 6px;
+  }
+  #next_shape {
+    width: 70px;
+    height: 70px;
+  }
+}
+

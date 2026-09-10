@@ -110,7 +110,7 @@ function checkAnswer(currentLevel) {
       }, 1000);
     }
   } else {
-    document.getElementById("status").textContent = `Game Over!`;
+    document.getElementById("status").textContent = `Permainan Selesai!`;
 
     setTimeout(() => {
       flashButton(missedColor);
@@ -138,7 +138,7 @@ function checkAnswer(currentLevel) {
 }
 
 function showCongratsMessage() {
-  const message = `Congrats! You passed level ${level}!`;
+  const message = `Selamat! Kamu berhasil melewati level ${level}!`;
   const congratsMessageElement = document.getElementById("level-message");
   congratsMessageElement.textContent = message;
   congratsMessageElement.style.display = "block"; // Ensure it's displayed
@@ -156,7 +156,7 @@ function hideCongratsMessage() {
 }
 
 function showLoseMessage() {
-  const message = `Game Over! Correct color was ${
+  const message = `Permainan Selesai! Warna yang benar: ${
     gamePattern[userPattern.length - 1]
   }.`;
   const loseMessageElement = document.getElementById("level-message");

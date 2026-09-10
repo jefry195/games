@@ -175,6 +175,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   document.addEventListener("keyup", control);
 
+  // Mobile Touch Swipe Support
+  let touchStartX = 0, touchStartY = 0;
+  document.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener("touchend", (e) => {
+    if (!touchStartX || !touchStartY) return;
+    const diffX = e.changedTouches[0].clientX - touchStartX;
+    const diffY = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 25) {
+      if (diffX > 0) keyRight();
+      else keyLeft();
+    } else if (Math.abs(diffY) > 25) {
+      if (diffY > 0) keyDown();
+      else keyUp();
+    }
+    touchStartX = 0;
+    touchStartY = 0;
+  }, { passive: true });
+
+
   function keyRight() {
     moveRight();
     combineRow();

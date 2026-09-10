@@ -37,23 +37,43 @@ $(function () {
       startAction();
     }
   });
-  //slice a fruit
-  $("#fruit1").mouseover(function () {
+  // Slice fruit logic
+  function sliceFruit() {
     score++; // increase score
     $("#scoreValue").html(score);
 
-    //play sound
-    $("#slicesound")[0].play();
+    // play sound
+    try { $("#slicesound")[0].play(); } catch(e) {}
 
-    //stop fruit
+    // stop fruit
     clearInterval(action);
 
-    //hide fruit
-    $("#fruit1").hide("explode", 500); //slice fruit
+    // hide fruit
+    $("#fruit1").hide("explode", 500); // slice fruit
 
-    //send new fruit
+    // send new fruit
     setTimeout(startAction, 500);
-  });
+  }
+
+  // Slice on mouseover or direct touch
+  $("#fruit1").on("mouseover touchstart", sliceFruit);
+
+  // Swipe across fruit container on mobile
+  const fContainer = document.getElementById("fruitcontainer");
+  if (fContainer) {
+    fContainer.addEventListener("touchmove", function(e) {
+      const touch = e.touches[0];
+      const fruit = document.getElementById("fruit1");
+      if (fruit && fruit.style.display !== "none") {
+        const rect = fruit.getBoundingClientRect();
+        if (touch.clientX >= rect.left && touch.clientX <= rect.right &&
+            touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+          sliceFruit();
+        }
+      }
+    }, { passive: true });
+  }
+
 
   //functions
 

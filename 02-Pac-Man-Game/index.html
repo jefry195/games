@@ -102,8 +102,16 @@
       <main class="game-container">
         <canvas id="gameCanvas" width="560" height="620"></canvas>
         <p class="hint">
-          Use arrow keys or WASD to move. Collect all pellets, avoid ghosts!
+          Use arrow keys, WASD, touch swipe, or D-Pad below to move. Collect all pellets!
         </p>
+        <div class="mobile-dpad">
+          <button type="button" class="dpad-btn up" data-dir="up" aria-label="Atas">⬆</button>
+          <div class="dpad-middle">
+            <button type="button" class="dpad-btn left" data-dir="left" aria-label="Kiri">⬅</button>
+            <button type="button" class="dpad-btn down" data-dir="down" aria-label="Bawah">⬇</button>
+            <button type="button" class="dpad-btn right" data-dir="right" aria-label="Kanan">➡</button>
+          </div>
+        </div>
       </main>
     </div>
 

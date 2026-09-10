@@ -12,19 +12,24 @@ function randomSquare() {
     square.classList.remove("emoji");
   });
 
-  let randomSqaure = squares[Math.floor(Math.random() * 9) + 1];
-  randomSqaure.classList.add("emoji");
-  hitPosition = randomSqaure.id;
+  let randomSquare = squares[Math.floor(Math.random() * squares.length)];
+  if (randomSquare) {
+    randomSquare.classList.add("emoji");
+    hitPosition = randomSquare.id;
+  }
 }
 
 squares.forEach((square) => {
-  square.addEventListener("mousedown", () => {
+  const handleHit = (e) => {
+    if (e.cancelable) e.preventDefault();
     if (square.id == hitPosition) {
       result++;
       score.textContent = result;
       hitPosition = null;
+      square.classList.remove("emoji");
     }
-  });
+  };
+  square.addEventListener("pointerdown", handleHit);
 });
 
 function moveEmoji() {
@@ -40,7 +45,7 @@ function countDown() {
   if (currentTime == 0) {
     clearInterval(countDownTimerId);
     clearInterval(timerId);
-    alert(`Game Over! Your final Score Is ${result}`);
+    alert(`Permainan Selesai! Skor akhir Anda adalah ${result}`);
   }
 }
 

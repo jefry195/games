@@ -62,18 +62,24 @@ body {
 
 @media screen and (max-width: 800px) {
   .wrapper {
-    width: 90vmin;
-    height: 115vmin;
+    width: 94vw;
+    max-width: 400px;
+    height: auto;
+    max-height: 85vh;
+  }
+  .play-board {
+    height: 78vw;
+    max-height: 330px;
   }
   .game-details {
     font-size: 1rem;
-    padding: 15px 27px;
+    padding: 10px 18px;
   }
   .controls {
     display: flex;
   }
   .controls i {
-    padding: 15px 0;
-    font-size: 1rem;
+    padding: 14px 0;
+    font-size: 1.25rem;
   }
 }

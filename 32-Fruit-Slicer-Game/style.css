@@ -126,3 +126,35 @@ html {
   left: 150px;
   z-index: 2;
 }
+
+@media (max-width: 768px) {
+  #container {
+    width: 100% !important;
+    max-width: 96vw !important;
+    height: auto !important;
+    padding: 10px 4px !important;
+    margin: 0 auto !important;
+  }
+  #fruitcontainer {
+    width: 100% !important;
+    max-width: 94vw !important;
+    height: 400px !important;
+    margin: 15px auto !important;
+  }
+  #instructions {
+    width: 90% !important;
+    font-size: 18px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+  }
+  #front {
+    width: 100% !important;
+    font-size: 24px !important;
+  }
+  #gameOver {
+    width: 90% !important;
+    left: 5% !important;
+    font-size: 2em !important;
+  }
+}
+

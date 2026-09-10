@@ -83,7 +83,7 @@
     <!-- Back to Arcade Menu Button -->
     <a href="../" id="arcade-back-btn" onclick="if(window.history.length>1&&document.referrer.includes(window.location.host)){window.history.back();return false;}" style="position:fixed;top:12px;left:12px;z-index:999999;background:rgba(15,23,42,0.85);color:#38bdf8;text-decoration:none;padding:7px 14px;border-radius:9999px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:13px;font-weight:600;border:1px solid rgba(56,189,248,0.4);box-shadow:0 4px 12px rgba(0,0,0,0.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none;transition:transform 0.15s,background 0.15s;" onmouseover="this.style.transform='scale(1.05)';this.style.background='#1e293b'" onmouseout="this.style.transform='scale(1)';this.style.background='rgba(15,23,42,0.85)'"><span>⬅</span> Kembali ke Menu</a>
 
-    <h1>Simon Says Game</h1>
+    <h1>Permainan Simon Says</h1>
     <div id="game-container">
       <div class="color-btn" id="green"></div>
       <div class="color-btn" id="red"></div>
@@ -92,16 +92,16 @@
     </div>
     <div id="game-status">
       <p class="my-text" id="sequence" style="display: none;">
-        Current Sequence: <span id="sequence-display">-</span>
+        Urutan: <span id="sequence-display">-</span>
       </p>
       <p class="my-text" id="clicks" style="display: none;">
-        Click Count: <span id="click-count">0</span>
+        Jumlah Klik: <span id="click-count">0</span>
       </p>
       <p class="my-text" id="status" style="display: none;">
-        Game Status: <span id="status">Waiting...</span>
+        Status: <span id="status">Menunggu...</span>
       </p>
     </div>
-    <button id="start-btn">Start Game</button>
+    <button id="start-btn">Mulai Permainan</button>
     <p id="level-message" style="display: none;"></p>
   </body>
 </html>
