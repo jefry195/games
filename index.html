@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>Arcade Game - 50 Game HTML, CSS & JavaScript | by Jefri</title>
+  <meta name="description" content="Koleksi 50 game seru berbasis HTML, CSS, dan JavaScript murni yang responsif di smartphone, tablet, dan laptop. Credit by Jefri." />
+  <meta name="theme-color" content="#090d16" />
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #131b2e;
+      --card-border: #1e2942;
+      --card-hover-border: #38bdf8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --purple: #a855f7;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at 50% 0%, #172554 0%, var(--bg) 65%);
+      color: var(--text);
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      padding: max(1.5rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(2rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 0 0.5rem;
+    }
+    .header-badges {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+    .creator-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      touch-action: manipulation;
+    }
+    .creator-badge:hover, .creator-badge:active {
+      background: rgba(168, 85, 247, 0.3);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+    }
+    h1 {
+      font-size: clamp(1.85rem, 5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #ffffff 30%, #38bdf8 70%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.75rem;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+      align-items: center;
+      width: 100%;
+    }
+    .search-box {
+      position: relative;
+      width: 100%;
+      max-width: 580px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 0.9rem 2.8rem 0.9rem 2.8rem;
+      border-radius: 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      touch-action: manipulation;
+    }
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .clear-btn {
+      position: absolute;
+      right: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      color: #cbd5e1;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .clear-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      width: 100%;
+    }
+    .cat-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 0.5rem 0.95rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      touch-action: manipulation;
+      white-space: nowrap;
+      user-select: none;
+    }
+    .cat-btn:hover {
+      background: #1e293b;
+      color: #fff;
+      border-color: #334155;
+    }
+    .cat-btn:active {
+      transform: scale(0.96);
+    }
+    .cat-btn.active {
+      background: var(--accent);
+      color: #090d16;
+      border-color: var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+    .stats-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.25rem;
+      padding: 0 0.25rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+      gap: 1.25rem;
+      width: 100%;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    @media (hover: hover) {
+      .card:hover {
+        transform: translateY(-4px);
+        border-color: var(--card-hover-border);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.15);
+      }
+      .card:hover::before {
+        opacity: 1;
+      }
+    }
+    .card:active {
+      transform: scale(0.985);
+    }
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .card-num {
+      font-family: ui-monospace, monospace;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.12);
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+    }
+    .card-cat {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      line-height: 1.35;
+    }
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 3.9em;
+    }
+    .play-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      min-height: 44px;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      touch-action: manipulation;
+    }
+    .play-btn:hover {
+      background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+      color: #090d16;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+    .play-btn:active {
+      transform: scale(0.97);
+    }
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--text-muted);
+      font-size: 1.15rem;
+    }
+    /* Floating Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: max(20px, env(safe-area-inset-bottom));
+      right: max(20px, env(safe-area-inset-right));
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #1e293b;
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.8);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 9999;
+      touch-action: manipulation;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+    .back-to-top:hover {
+      background: var(--accent);
+      color: #090d16;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    footer a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Mobile & Tablet Media Queries */
+    @media (max-width: 640px) {
+      body {
+        padding-top: 1.25rem;
+        padding-bottom: 2rem;
+      }
+      header {
+        margin-bottom: 1.5rem;
+      }
+      .controls {
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+      /* App-Style Horizontal Scroll for Categories on Mobile */
+      .categories {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 0.25rem 0.5rem 0.6rem;
+        width: calc(100% + 2rem);
+        margin-left: -1rem;
+        margin-right: -1rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        scroll-snap-type: x mandatory;
+      }
+      .categories::-webkit-scrollbar {
+        display: none;
+      }
+      .cat-btn {
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        font-size: 0.82rem;
+        padding: 0.45rem 0.85rem;
+      }
+      .cat-btn:first-child {
+        margin-left: 1rem;
+      }
+      .cat-btn:last-child {
+        margin-right: 1rem;
+      }
+      /* Grid single column on small phones */
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .card {
+        padding: 1.15rem;
+      }
+      .card-desc {
+        min-height: auto;
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 960px) {
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-badges">
+        <div class="badge">🎮 Arcade Game Koleksi</div>
+        <a href="https://jefri-orcin.vercel.app/" target="_blank" rel="noopener noreferrer" class="creator-badge">
+          ✨ Credit by Jefri ↗
+        </a>
+      </div>
+      <h1>50 Game HTML, CSS & JavaScript</h1>
+      <p class="subtitle">Koleksi 50 game responsif siap main di HP, tablet, maupun laptop tanpa perlu instalasi apa pun. Pilih game dan mainkan!</p>
+    </header>
+
+    <div class="controls">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Cari game favorit Anda (tekan / untuk cari)..." autocomplete="off" spellcheck="false" />
+        <button id="clearSearch" class="clear-btn" aria-label="Hapus pencarian">✕</button>
+      </div>
+
+      <div class="categories">
+        <button class="cat-btn active" data-cat="all">Semua (50)</button>
+        <button class="cat-btn" data-cat="Aksi & Santai">🎮 Aksi & Santai</button>
+        <button class="cat-btn" data-cat="Arkade Klasik">👾 Arkade Klasik</button>
+        <button class="cat-btn" data-cat="Teka-Teki & Asah Otak">🧩 Teka-Teki & Otak</button>
+        <button class="cat-btn" data-cat="Papan & Kartu">🃏 Papan & Kartu</button>
+        <button class="cat-btn" data-cat="Kecepatan & Mengetik">⌨️ Kecepatan</button>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <span id="statsText">Menampilkan 50 game</span>
+      <span>Port: 8002</span>
+    </div>
+
+    <div class="grid" id="gamesGrid"></div>
+  </div>
+
+  <button id="backToTop" class="back-to-top" title="Kembali ke atas" aria-label="Kembali ke atas">↑</button>
+
+  <footer>
+    <p>Credit by <a href="https://jefri-orcin.vercel.app/" target="_blank" rel="noopener noreferrer">Jefri</a> • Koleksi Game HTML, CSS & JavaScript • Responsif di Semua Perangkat</p>
+  </footer>
+
+  <script>
+    const games = [{"num": "01", "name": "Candy Crush", "folder": "01-Candy-Crush-Game", "desc": "Game puzzle mencocokkan tiga permen warna-warni untuk mencetak skor setinggi mungkin.", "category": "Aksi & Santai", "icon": "🍬", "path": "./01-Candy-Crush-Game/index.html"}, {"num": "02", "name": "Pac-Man", "folder": "02-Pac-Man-Game", "desc": "Kendalikan Pac-Man di labirin neon, habiskan semua titik makanan, dan hindari kejaran hantu nakal.", "category": "Arkade Klasik", "icon": "👻", "path": "./02-Pac-Man-Game/index.html"}, {"num": "03", "name": "Catur (Chess)", "folder": "03-Chess-Game", "desc": "Permainan strategi catur klasik dengan aturan standar pada papan 8×8.", "category": "Papan & Kartu", "icon": "♟️", "path": "./03-Chess-Game/index.html"}, {"num": "04", "name": "Doodle Jump", "folder": "04-Doodle-Jump-Game", "desc": "Lompat dari satu pijakan ke pijakan lainnya setinggi mungkin tanpa terjatuh.", "category": "Aksi & Santai", "icon": "🦘", "path": "./04-Doodle-Jump-Game/index.html"}, {"num": "05", "name": "Solitaire", "folder": "05-Solitaire-Game", "desc": "Permainan kartu klasik Klondike. Susun kartu secara berurutan dengan warna selang-seling.", "category": "Papan & Kartu", "icon": "🃏", "path": "./05-Solitaire-Game/index.html"}, {"num": "06", "name": "Sudoku", "folder": "06-Sudoku-Game", "desc": "Isi kotak 9×9 dengan angka 1 sampai 9 tanpa ada angka berulang di baris, kolom, atau sub-kotak.", "category": "Teka-Teki & Asah Otak", "icon": "🧩", "path": "./06-Sudoku-Game/index.html"}, {"num": "07", "name": "Crossy Road", "folder": "07-Crossy-Road-Game", "desc": "Bantu karakter melompati jalan raya ramai dan sungai berbahaya dalam petualangan tiada henti.", "category": "Aksi & Santai", "icon": "🚦", "path": "./07-Crossy-Road-Game/index.html"}, {"num": "08", "name": "Gunting Batu Kertas", "folder": "08-Rock-Paper-Scissors", "desc": "Permainan adu strategi tangan klasik melawan komputer. Buktikan siapa yang lebih unggul!", "category": "Aksi & Santai", "icon": "✂️", "path": "./08-Rock-Paper-Scissors/index.html"}, {"num": "09", "name": "Flappy Bird", "folder": "09-Flappy-Bird-Game", "desc": "Terbangkan burung melewati celah pipa hijau dengan ketukan berirama dan raih skor tertinggi.", "category": "Arkade Klasik", "icon": "🐦", "path": "./09-Flappy-Bird-Game/index.html"}, {"num": "10", "name": "2048", "folder": "10-2048-Game", "desc": "Geser dan gabungkan ubin angka yang sama hingga berhasil membentuk angka 2048.", "category": "Teka-Teki & Asah Otak", "icon": "🔢", "path": "./10-2048-Game/index.html"}, {"num": "11", "name": "Wordle", "folder": "11-Wordle-Game", "desc": "Tebak kata rahasia dalam 6 kesempatan dengan bantuan petunjuk warna pada setiap tebakan.", "category": "Teka-Teki & Asah Otak", "icon": "📝", "path": "./11-Wordle-Game/index.html"}, {"num": "12", "name": "Hangman", "folder": "12-Hangman-Game", "desc": "Tebak kata tersembunyi huruf demi huruf sebelum gambar orang digantung selesai dibuat.", "category": "Teka-Teki & Asah Otak", "icon": "🎩", "path": "./12-Hangman-Game/index.html"}, {"num": "13", "name": "Tower Blocks", "folder": "13-Tower-Blocks", "desc": "Tumpuk balok setinggi langit dengan ketelitian presisi agar menara tetap seimbang dan tidak roboh.", "category": "Aksi & Santai", "icon": "🏗️", "path": "./13-Tower-Blocks/index.html"}, {"num": "14", "name": "Panahan (Archery)", "folder": "14-Archery-Game", "desc": "Uji fokus dan bidikan tepat sasaran dengan busur dan panah ke target lingkaran.", "category": "Aksi & Santai", "icon": "🏹", "path": "./14-Archery-Game/index.html"}, {"num": "15", "name": "Tic Tac Toe (XOX)", "folder": "15-Tic-Tac-Toe", "desc": "Tantang teman atau komputer dalam permainan strategi menempatkan tiga simbol berurutan.", "category": "Papan & Kartu", "icon": "⭕", "path": "./15-Tic-Tac-Toe/index.html"}, {"num": "16", "name": "Minesweeper", "folder": "16-Minesweeper-Game", "desc": "Gunakan logika dan angka petunjuk untuk membuka semua petak tanpa menginjak ranjau.", "category": "Teka-Teki & Asah Otak", "icon": "💣", "path": "./16-Minesweeper-Game/index.html"}, {"num": "17", "name": "Tes Kecepatan Mengetik", "folder": "17-Speed-Typing-Game", "desc": "Tingkatkan kecepatan dan akurasi jari mengetik kata-kata bahasa di bawah tekanan waktu.", "category": "Kecepatan & Mengetik", "icon": "⌨️", "path": "./17-Speed-Typing-Game/index.html"}, {"num": "18", "name": "Breakout", "folder": "18-Breakout-Game", "desc": "Hancurkan seluruh deretan balok bata dengan memantulkan bola menggunakan raket geser.", "category": "Arkade Klasik", "icon": "🧱", "path": "./18-Breakout-Game/index.html"}, {"num": "19", "name": "Ping Pong", "folder": "19-Ping-Pong-Game", "desc": "Keseruan tenis meja retro klasik melawan kecerdasan buatan komputer yang tangkas.", "category": "Arkade Klasik", "icon": "🏓", "path": "./19-Ping-Pong-Game/index.html"}, {"num": "20", "name": "Tetris", "folder": "20-Tetris-Game", "desc": "Atur dan putar balok aneka bentuk yang jatuh untuk melengkapi baris mendatar penuh.", "category": "Arkade Klasik", "icon": "🕹️", "path": "./20-Tetris-Game/index.html"}, {"num": "21", "name": "Labirin Miring (Tilting Maze)", "folder": "21-Tilting-Maze-Game", "desc": "Miringkan bidang labirin untuk menggulirkan bola menuju pintu keluar tanpa jatuh ke lubang jebakan.", "category": "Aksi & Santai", "icon": "🌀", "path": "./21-Tilting-Maze-Game/index.html"}, {"num": "22", "name": "Kartu Memori (Memory Card)", "folder": "22-Memory-Card-Game", "desc": "Uji kekuatan daya ingat visual Anda dengan menemukan pasangan kartu bergambar sama.", "category": "Papan & Kartu", "icon": "🃏", "path": "./22-Memory-Card-Game/index.html"}, {"num": "23", "name": "Tebak Angka (Number Guessing)", "folder": "23-Type-Number-Guessing-Game", "desc": "Tebak angka rahasia yang dipilih komputer berdasarkan petunjuk 'terlalu besar' atau 'terlalu kecil'.", "category": "Teka-Teki & Asah Otak", "icon": "🔢", "path": "./23-Type-Number-Guessing-Game/index.html"}, {"num": "24", "name": "Game Ular (Snake)", "folder": "24-Snake-Game", "desc": "Pandu ular memakan apel agar tumbuh panjang, waspada jangan sampai menabrak ekor sendiri atau tembok!", "category": "Arkade Klasik", "icon": "🐍", "path": "./24-Snake-Game/index.html"}, {"num": "25", "name": "Connect Four", "folder": "25-Connect-Four-Game", "desc": "Jatuhkan koin ke kolom papan dan susun empat koin warnamu dalam satu garis lurus.", "category": "Papan & Kartu", "icon": "🔵", "path": "./25-Connect-Four-Game/index.html"}, {"num": "26", "name": "Tangkap Serangga", "folder": "26-Insect-Catch-Game", "desc": "Uji kecepatan refleks mata dan tangan dengan membasmi serangga nakal yang berhamburan.", "category": "Aksi & Santai", "icon": "🐞", "path": "./26-Insect-Catch-Game/index.html"}, {"num": "27", "name": "Latihan Mengetik Kata", "folder": "27-Typing-Game", "desc": "Tantang dirimu mengetik daftar kata secepat mungkin tanpa kesalahan ketik.", "category": "Kecepatan & Mengetik", "icon": "⌨️", "path": "./27-Typing-Game/index.html"}, {"num": "28", "name": "Simulator Lempar Dadu", "folder": "28-Dice-Roll-Simulator", "desc": "Simulasi kocok dadu digital 3D dengan visual realistis untuk berbagai keperluan game papan.", "category": "Aksi & Santai", "icon": "🎲", "path": "./28-Dice-Roll-Simulator/index.html"}, {"num": "29", "name": "Shape Clicker", "folder": "29-Shape-Clicker-Game", "desc": "Klik berbagai bentuk geometri yang bermunculan secara acak sebelum batas waktu berakhir.", "category": "Aksi & Santai", "icon": "🔷", "path": "./29-Shape-Clicker-Game/index.html"}, {"num": "30", "name": "Tantangan Mengetik Cepat", "folder": "30-Typing-Game", "desc": "Uji kemahiran mengetik kata-kata dinamis dalam mode waktu berpacu dengan batas detik.", "category": "Kecepatan & Mengetik", "icon": "⚡", "path": "./30-Typing-Game/index.html"}, {"num": "31", "name": "Tebak Angka Suara", "folder": "31-Speak-Number-Guessing-Game", "desc": "Tebak angka rahasia hanya dengan berbicara ke mikrofon perangkat Anda (Web Speech API).", "category": "Teka-Teki & Asah Otak", "icon": "🗣️", "path": "./31-Speak-Number-Guessing-Game/index.html"}, {"num": "32", "name": "Iris Buah (Fruit Slicer)", "folder": "32-Fruit-Slicer-Game", "desc": "Tebas dan potong buah-buahan segar yang beterbangan layaknya ninja, awas jangan sampai terkena bom!", "category": "Aksi & Santai", "icon": "🍉", "path": "./32-Fruit-Slicer-Game/index.html"}, {"num": "33", "name": "Kuis Pengetahuan (Quiz Game)", "folder": "33-Quiz-Game", "desc": "Asah wawasanmu dengan menjawab aneka soal kuis pilihan ganda dan kumpulkan skor sempurna.", "category": "Teka-Teki & Asah Otak", "icon": "🧠", "path": "./33-Quiz-Game/index.html"}, {"num": "34", "name": "Tangkap Emoji (Emoji Catcher)", "folder": "34-Emoji-Catcher-Game", "desc": "Gerakkan wadah penampung ke kiri dan kanan untuk menangkap emoji gembira yang berjatuhan.", "category": "Aksi & Santai", "icon": "😄", "path": "./34-Emoji-Catcher-Game/index.html"}, {"num": "35", "name": "Pukul Tikus (Whack A Mole)", "folder": "35-Whack-A-Mole-Game", "desc": "Pukul tikus mondok nakal yang menyembul dari lubang tanah secepat kilat sebelum mereka sembunyi.", "category": "Arkade Klasik", "icon": "🕹️", "path": "./35-Whack-A-Mole-Game/index.html"}, {"num": "36", "name": "Simon Says", "folder": "36-Simon-Says-Game", "desc": "Perhatikan dan hafalkan kombinasi lampu warna-warni, lalu ulangi urutan tombolnya secara tepat.", "category": "Teka-Teki & Asah Otak", "icon": "💡", "path": "./36-Simon-Says-Game/index.html"}, {"num": "37", "name": "Puzzle Geser (Sliding Puzzle)", "folder": "37-Sliding-Puzzle-Game", "desc": "Geser kepingan gambar pada petak kosong hingga gambar utuh tersusun rapi kembali.", "category": "Teka-Teki & Asah Otak", "icon": "🧩", "path": "./37-Sliding-Puzzle-Game/index.html"}, {"num": "38", "name": "Mastermind", "folder": "38-Mastermind-Game", "desc": "Pecahkan sandi kombinasi warna rahasia milik komputer berdasarkan indikator pasak penunjuk.", "category": "Teka-Teki & Asah Otak", "icon": "🎯", "path": "./38-Mastermind-Game/index.html"}, {"num": "39", "name": "Blackjack (21)", "folder": "39-Blackjack-Game", "desc": "Kombinasikan nilai kartu mendekati angka 21 tanpa melebihi batas untuk menaklukkan sang bandar.", "category": "Papan & Kartu", "icon": "🃏", "path": "./39-Blackjack-Game/index.html"}, {"num": "40", "name": "Bubble Shooter", "folder": "40-Bubble-Shooter-Game", "desc": "Arahkan meriam gelembung ke kelompok warna senada untuk meletuskan dan membersihkan langit-langit.", "category": "Arkade Klasik", "icon": "🔵", "path": "./40-Bubble-Shooter-Game/index.html"}, {"num": "41", "name": "Dam / Dames (Checkers)", "folder": "41-Checkers-Game", "desc": "Permainan dam papan 8×8 klasik. Lompat dan mangsa pion lawan hingga menjadi raja pion.", "category": "Papan & Kartu", "icon": "♟️", "path": "./41-Checkers-Game/index.html"}, {"num": "42", "name": "Space Invaders", "folder": "42-Space-Invaders-Game", "desc": "Hancurkan konvoi armada alien luar angkasa sebelum mereka mendarat dan membumihanguskan bumi.", "category": "Arkade Klasik", "icon": "👾", "path": "./42-Space-Invaders-Game/index.html"}, {"num": "43", "name": "Asteroids", "folder": "43-Asteroids-Game", "desc": "Kendalikan pesawat tempur ruang angkasa, tembak hancur batuan asteroid dan piring terbang musuh.", "category": "Arkade Klasik", "icon": "🚀", "path": "./43-Asteroids-Game/index.html"}, {"num": "44", "name": "Reversi / Othello", "folder": "44-Reversi-Game", "desc": "Jepit kepingan milik lawan untuk membalik warnanya menjadi milikmu dan kuasai mayoritas papan.", "category": "Papan & Kartu", "icon": "⚪", "path": "./44-Reversi-Game/index.html"}, {"num": "45", "name": "Mahjong Solitaire", "folder": "45-Mahjong-Solitaire-Game", "desc": "Temukan dan pasangkan dua balok ubin mahjong bebas yang identik untuk mengosongkan meja.", "category": "Papan & Kartu", "icon": "🀄", "path": "./45-Mahjong-Solitaire-Game/index.html"}, {"num": "46", "name": "Frogger", "folder": "46-Frogger-Game", "desc": "Bimbing kodok kecil menyeberangi jalan raya padat mobil dan melompat di atas batang kayu sungai.", "category": "Arkade Klasik", "icon": "🐸", "path": "./46-Frogger-Game/index.html"}, {"num": "47", "name": "Poker 5-Kartu", "folder": "47-Poker-Game", "desc": "Susun kombinasi kartu terbaik (Pair, Flush, Full House, Royal Flush) melawan bot komputer.", "category": "Papan & Kartu", "icon": "🃏", "path": "./47-Poker-Game/index.html"}, {"num": "48", "name": "Kapal Tempur (Battleship)", "folder": "48-Battleship-Game", "desc": "Tentukan posisi armada lautmu dan tebak koordinat lokasi kapal tempur musuh untuk menenggelamkannya.", "category": "Papan & Kartu", "icon": "🚢", "path": "./48-Battleship-Game/index.html"}, {"num": "49", "name": "Nonogram (Picross)", "folder": "49-Nonogram-Game", "desc": "Isi petak kisi berdasarkan deretan angka petunjuk untuk menyingkap ilustrasi gambar rahasia.", "category": "Teka-Teki & Asah Otak", "icon": "🎨", "path": "./49-Nonogram-Game/index.html"}, {"num": "50", "name": "Lights Out", "folder": "50-Lights-Out-Game", "desc": "Matikan seluruh lampu yang menyala dengan memikirkan efek tombol tetangga yang ikut terbalik.", "category": "Teka-Teki & Asah Otak", "icon": "💡", "path": "./50-Lights-Out-Game/index.html"}];
+    const grid = document.getElementById('gamesGrid');
+    const searchInput = document.getElementById('searchInput');
+    const clearSearch = document.getElementById('clearSearch');
+    const statsText = document.getElementById('statsText');
+    const catButtons = document.querySelectorAll('.cat-btn');
+    const backToTop = document.getElementById('backToTop');
+
+    let activeCat = 'all';
+    let query = '';
+
+    function render() {
+      const filtered = games.filter(g => {
+        const matchesCat = activeCat === 'all' || g.category === activeCat;
+        const matchesQuery = g.name.toLowerCase().includes(query) ||
+                             g.desc.toLowerCase().includes(query) ||
+                             g.num.includes(query);
+        return matchesCat && matchesQuery;
+      });
+
+      statsText.textContent = `Menampilkan ${filtered.length} dari ${games.length} game`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="empty-state">Tidak ada game yang sesuai dengan pencarian Anda. Silakan coba kata kunci lain.</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(g => `
+        <div class="card">
+          <div>
+            <div class="card-head">
+              <span class="card-num">#${g.num}</span>
+              <span class="card-cat">${g.category}</span>
+            </div>
+            <h2 class="card-title">${g.icon} ${g.name}</h2>
+            <p class="card-desc">${g.desc}</p>
+          </div>
+          <a class="play-btn" href="${g.path}">Mainkan Sekarang 🕹️</a>
+        </div>
+      `).join('');
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      query = e.target.value.trim().toLowerCase();
+      clearSearch.style.display = query ? 'flex' : 'none';
+      render();
+    });
+
+    clearSearch.addEventListener('click', () => {
+      searchInput.value = '';
+      query = '';
+      clearSearch.style.display = 'none';
+      searchInput.focus();
+      render();
+    });
+
+    // Keyboard shortcut '/' to focus search box
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    });
+
+    catButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        catButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCat = btn.dataset.cat;
+        render();
+      });
+    });
+
+    // Scroll to top button handling
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    render();
+  </script>
+</body>
+</html>
