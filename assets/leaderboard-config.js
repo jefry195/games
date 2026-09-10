@@ -8,9 +8,8 @@
  * =========================================================================
  */
 window.LEADERBOARD_CONFIG = {
-  // Tempelkan Web App URL Google Script Anda di bawah ini:
-  // Contoh: "https://script.google.com/macros/s/AKfycby.../exec"
-  GOOGLE_APPS_SCRIPT_URL: "",
+  // Web App URL dari Google Apps Script yang sudah dideploy:
+  GOOGLE_APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbwXkt5uMR6eHjp1jaDRdzURumuT-p5brk-6JOIw_Tb6_d6Ya4UstdT-g02xsNnzCUbKyA/exec",
   
   // Kota / daerah default
   DEFAULT_CITY: "Samarinda",
