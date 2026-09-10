@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Mahakam FPS Defender - 3D Shooter Samarinda | by Jefri</title>
+  <meta name="description" content="Game 3D FPS Shooter seru bertema pertahanan Tepian Mahakam Samarinda. Responsif di PC dan HP dengan kontrol sentuh virtual." />
+  <link rel="icon" href="https://i.ibb.co/M6KTWnf/pic.jpg" />
+
+  <!-- Universal Back Button & Mobile Fixes -->
+  <style id="arcade-device-responsive">
+    html { box-sizing: border-box; -webkit-text-size-adjust: 100%; }
+    *, *::before, *::after { box-sizing: inherit; }
+    body { -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; overflow: hidden; background: #050811; }
+    #arcade-back-btn {
+      position: fixed;
+      top: max(12px, env(safe-area-inset-top));
+      left: max(12px, env(safe-area-inset-left));
+      z-index: 999999;
+      background: rgba(15, 23, 42, 0.88);
+      color: #38bdf8;
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 9999px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      user-select: none;
+      touch-action: manipulation;
+      transition: transform 0.15s, background 0.15s;
+    }
+    #arcade-back-btn:hover { transform: scale(1.05); background: #1e293b; color: #fff; }
+    #arcade-back-btn:active { transform: scale(0.95); }
+  </style>
+
+  <link rel="stylesheet" href="../assets/leaderboard.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Tombol Kembali ke Menu -->
+  <a href="../" id="arcade-back-btn" onclick="if(window.history.length>1&&document.referrer.includes(window.location.host)){window.history.back();return false;}">
+    <span>⬅</span> Kembali ke Menu
+  </a>
+
+  <!-- 3D Canvas Viewport -->
+  <div id="game-canvas-container"></div>
+
+  <!-- Reticle / Crosshair -->
+  <div id="crosshair">
+    <div class="ch-dot"></div>
+    <div class="ch-line ch-top"></div>
+    <div class="ch-line ch-bottom"></div>
+    <div class="ch-line ch-left"></div>
+    <div class="ch-line ch-right"></div>
+    <div id="hitmarker">✕</div>
+  </div>
+
+  <!-- HUD Atas -->
+  <div id="hud-top">
+    <div class="hud-box">
+      <span class="hud-label">SKOR</span>
+      <span id="score-val" class="hud-value">0</span>
+    </div>
+    <div class="hud-box" id="hud-samarinda-badge">
+      <span class="badge-pesut">🐬 Mahakam</span>
+      <span class="badge-wave">Gelombang <b id="wave-val">1</b></span>
+    </div>
+    <div class="hud-box">
+      <span class="hud-label">DARAH</span>
+      <div class="hp-bar-wrap">
+        <div id="hp-bar-fill" style="width: 100%;"></div>
+      </div>
+      <span id="hp-val" class="hud-subvalue">100%</span>
+    </div>
+  </div>
+
+  <!-- HUD Bawah -->
+  <div id="hud-bottom">
+    <div class="hud-box ammo-box">
+      <span class="hud-label">AMUNISI</span>
+      <div class="ammo-display">
+        <span id="ammo-val">30</span><span class="ammo-max"> / 30</span>
+      </div>
+    </div>
+    <div class="hud-actions">
+      <button id="btn-open-lb" class="hud-btn-lb" title="Buka Papan Peringkat">
+        🏆 Peringkat
+      </button>
+    </div>
+  </div>
+
+  <!-- Layar Awal (Start Overlay) -->
+  <div id="start-overlay" class="overlay-screen active">
+    <div class="overlay-card">
+      <div class="card-tag">🚀 3D FPS SHOOTER • KEARIFAN LOKAL</div>
+      <h1 class="card-title">MAHAKAM DEFENDER</h1>
+      <p class="card-desc">
+        Lindungi benteng <b>Tepian Sungai Mahakam Samarinda</b> dari invasi drone cyber musuh! Tembak jatuh setiap drone sebelum mereka menembus pertahanan kota.
+      </p>
+
+      <div class="controls-guide">
+        <div class="guide-col">
+          <b>💻 Kontrol Komputer (PC/Laptop):</b>
+          <ul>
+            <li><b>W, A, S, D</b> : Bergerak jalan</li>
+            <li><b>Mouse</b> : Bidik (Klik untuk mengunci kursor)</li>
+            <li><b>Klik Kiri / Spasi</b> : Menembak</li>
+            <li><b>R</b> : Isi Ulang Peluru (Reload)</li>
+          </ul>
+        </div>
+        <div class="guide-col">
+          <b>📱 Kontrol Layar Sentuh (HP/Tablet):</b>
+          <ul>
+            <li><b>Joystick Kiri</b> : Geser untuk jalan</li>
+            <li><b>Layar Kanan</b> : Usap sentuh untuk membidik</li>
+            <li><b>Tombol Merah 🔥</b> : Menembak</li>
+            <li><b>Tombol Reload 🔄</b> : Isi ulang peluru</li>
+          </ul>
+        </div>
+      </div>
+
+      <button id="btn-start-game" class="btn-play-action">
+        MULAI BERTAHAN ⚡
+      </button>
+      <div class="credit-text">Credit by Jefri • Arcade Mahakam Samarinda</div>
+    </div>
+  </div>
+
+  <!-- Layar Kalah (Game Over Overlay) -->
+  <div id="game-over-overlay" class="overlay-screen">
+    <div class="overlay-card">
+      <div class="game-over-title">PERTAHANAN JEBOL!</div>
+      <p class="game-over-subtitle">Drone musuh berhasil melumpuhkan pos pertahanan Tepian Mahakam.</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">SKOR AKHIR</span>
+          <span id="final-score" class="stat-val">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">DRONE HANCUR</span>
+          <span id="final-kills" class="stat-val">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">GELOMBANG</span>
+          <span id="final-wave" class="stat-val">1</span>
+        </div>
+      </div>
+
+      <div class="modal-buttons">
+        <button id="btn-submit-score" class="btn-action btn-gold">
+          🏆 Catat ke Papan Peringkat
+        </button>
+        <button id="btn-restart" class="btn-action btn-primary">
+          🔄 Main Lagi
+        </button>
+        <a href="../" class="btn-action btn-secondary">
+          ⬅ Menu Utama
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kontrol Sentuh Mobile (Hanya tampil di Layar Sentuh) -->
+  <div id="mobile-controls">
+    <!-- Joystick Analog Kiri -->
+    <div id="joystick-zone">
+      <div id="joystick-base">
+        <div id="joystick-thumb"></div>
+      </div>
+    </div>
+
+    <!-- Area Sentuh Bidik Kanan -->
+    <div id="touch-look-zone"></div>
+
+    <!-- Tombol Aksi Kanan Bawah -->
+    <div id="mobile-action-buttons">
+      <button id="btn-mobile-reload" class="mobile-btn reload-btn" aria-label="Isi Ulang Peluru">
+        🔄
+      </button>
+      <button id="btn-mobile-fire" class="mobile-btn fire-btn" aria-label="Tembak">
+        🔥
+      </button>
+    </div>
+  </div>
+
+  <!-- Library Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Leaderboard Scripts -->
+  <script src="../assets/leaderboard-config.js"></script>
+  <script src="../assets/leaderboard.js"></script>
+  <!-- Game Logic Script -->
+  <script src="script.js"></script>
+</body>
+</html>
